@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install playwright && python -m playwright install --with-deps chromium
+      - run: pip install playwright && timeout 150 python -m playwright install --with-deps chromium || python -m playwright install chromium
       - name: Lock plays, grade finals, save ledger
         env:
           SITE_URL: ${{ vars.SITE_URL }}
